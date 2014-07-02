@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>I'm in WKWebView</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <style>
+        body {
+            background: #FF00FF;
+        }
+    </style>
+    <script>
+        var array = ["hell", "world"];
+        var dict = {
+            "name":"Leon",
+            "age":18
+        };
+        var today = new Date();
+        var jsString = "I'm Javascript String.";
+        
+        function testScriptMessage(msg) {
+            window.webkit.messageHandlers.defaultHandler.postMessage(msg);
+        }
+
+        function testAlert(){
+            alert("Test Alert");
+        }
+
+        function testConfirm(){
+            var result = confirm("Test Confirm?");
+            console.log("[testConfirm] result: " + result);
+        }
+
+        function testPrompt(){
+            var result = prompt("Test prompt", "default value");
+            console.log("[testPrompt] result: " + result);
+        }
+
+    </script>
+</head>
+<body>
+<div>
+    <h4>Post Message</h4>
+    <a href="javascript:testScriptMessage(119)">post(119)</a> -
+    <a href="javascript:testScriptMessage(11.9)">post(11.9)</a> -
+    <a href="javascript:testScriptMessage(jsString)">post(string)</a> -
+    <a href="javascript:testScriptMessage(array)">post(array)</a> -
+    <a href="javascript:testScriptMessage(dict)">post(dict)</a> -
+    <a href="javascript:testScriptMessage(today)">post(new Date())</a> -
+    <a href="javascript:testScriptMessage(null)">post(null)</a><br>
+
+    <h4>Call Injected Javascript</h4>
+    This html dose not have a function named 'changeBackgroundColor()'.<br>
+    <a href="javascript:changeBackgroundColor('#FF0000')">Call changeBackgroundColor()</a><br>
+    
+    <h4>UI Test</h4>
+    <a href="javascript:testAlert()">Alert</a> - <a href="javascript:testConfirm()">Confirm</a> - <a href="javascript:testPrompt()">Prompt</a>
+</div>
+</body>
+</html>
