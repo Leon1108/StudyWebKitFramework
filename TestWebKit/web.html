@@ -17,6 +17,14 @@
         var today = new Date();
         var jsString = "I'm Javascript String.";
         
+        function Person() {
+            this.name = "Default name.";
+            this.gender = 0;
+        }
+        Person.prototype.walk = function(){
+            console.log("walk");
+        }
+        
         function testScriptMessage(msg) {
             window.webkit.messageHandlers.defaultHandler.postMessage(msg);
         }
@@ -42,10 +50,12 @@
     <h4>Post Message</h4>
     <a href="javascript:testScriptMessage(119)">post(119)</a> -
     <a href="javascript:testScriptMessage(11.9)">post(11.9)</a> -
+    <a href="javascript:testScriptMessage(true)">post(boolean)</a> -
     <a href="javascript:testScriptMessage(jsString)">post(string)</a> -
     <a href="javascript:testScriptMessage(array)">post(array)</a> -
     <a href="javascript:testScriptMessage(dict)">post(dict)</a> -
     <a href="javascript:testScriptMessage(today)">post(new Date())</a> -
+    <a href="javascript:testScriptMessage(new Person())">post(object)</a> -
     <a href="javascript:testScriptMessage(null)">post(null)</a><br>
 
     <h4>Call Injected Javascript</h4>
