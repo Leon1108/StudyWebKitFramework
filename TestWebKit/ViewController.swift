@@ -168,8 +168,8 @@ class ViewController:UIViewController, WKNavigationDelegate, WKUIDelegate, WKScr
     }
     
     @IBAction func onJsCalled(sender: UIButton) {
-        self.callJavascriptFunction("changeBackgroundColor(\"#0000FF\");")
-        self.webView!.reloadFromOrigin()
+        self.callJavascriptFunction("changeBackgroundColor(\"#0055FF\");")
+        self.webView!.reload()
     }
     
     func checkCanGoBackOrFroward(){
@@ -211,9 +211,8 @@ class ViewController:UIViewController, WKNavigationDelegate, WKUIDelegate, WKScr
     {
         NSLog("runJavaScriptAlertPanelWithMessage. Message:%@; Frame:%@", msg, frame)
         
-        // TODO 下面的代码不能成功执行，不理解。暂时想不通，怀疑是Bug ......
-//        var alertView:UIAlertView = UIAlertView(title:"Alert From Web", message:msg, delegate:nil, cancelButtonTitle:"Cancel")
-//        alertView.show()
+        var alertView:UIAlertView = UIAlertView(title:"Alert From Web", message:msg, delegate:nil, cancelButtonTitle:"Cancel")
+        alertView.show()
         completionHandler()
     }
     
@@ -336,11 +335,10 @@ class ViewController:UIViewController, WKNavigationDelegate, WKUIDelegate, WKScr
     
     func pickerView(pickerView: UIPickerView!, didSelectRow row: Int, inComponent component: Int)
     {
-        NSLog(">>>>>>> select %@", row)
     }
     
-    func getCurrentBackForwardListForType() -> AnyObject[]{
-        var backList : AnyObject[]
+    func getCurrentBackForwardListForType() -> [AnyObject]{
+        var backList : [AnyObject]
         switch(self.historyType){
         case .Back:
             backList = self.webView!.backForwardList.backList
